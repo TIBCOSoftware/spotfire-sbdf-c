@@ -1,0 +1,25 @@
+# CMake files
+/CMakeSettings.json
+/CMakeCache.txt
+/CMakeFiles
+/cmake_install.cmake
+
+# Binaries
+/bin
+
+# Makefile
+/Makefile
+
+# Ninja
+/build.ninja
+/.ninja_*
+
+# Visual Studio
+/.vs
+/out
+/*.user
+
+# JetBrains CLion
+/.idea
+/cmake-*
+
