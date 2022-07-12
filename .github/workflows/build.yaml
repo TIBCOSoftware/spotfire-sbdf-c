@@ -7,6 +7,9 @@ jobs:
     strategy:
       matrix:
         operating-system: ['ubuntu-latest', 'windows-latest']
+        include:
+          - operating-system: 'windows-latest'
+            ctest-args: '-C Debug'
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -22,5 +25,5 @@ jobs:
       - name: Test
         run: |
           cd cmake-build-${{ matrix.operating-system }}
-          ctest --output-on-failure
+          ctest --output-on-failure ${{ matrix.ctest-args }}
 
