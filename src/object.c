@@ -66,7 +66,7 @@ int sbdf_init_array_int(sbdf_valuetype type, int count, void const* data, int co
 		int calculate_lengths = lengths == 0;
 
 		is_string = type.id == SBDF_STRINGTYPEID;
-		if (calculate_lengths && type.id == SBDF_BINARYTYPEID)
+		if (clone_array && calculate_lengths && type.id == SBDF_BINARYTYPEID)
 		{
 			sbdf_obj_destroy(t);
 			return SBDF_ERROR_ARGUMENT_NULL;

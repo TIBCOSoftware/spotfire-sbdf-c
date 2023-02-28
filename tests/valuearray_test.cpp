@@ -8,6 +8,7 @@
 
 #include "valuearray.h"
 #include "valuearray_io.h"
+#include "errors.h"
 
 using namespace sbdf;
 
@@ -37,6 +38,23 @@ SBDF_TEST(valuearray, rle)
 		SBDF_ASSERT(check_arrays(vals, oo.as_vec<int>()));
 		sbdf_va_destroy(va);
 	}
+}
+
+SBDF_TEST(valuearray, rle_binary)
+{
+    // Test case for GH issue #3
+    char *data[] = {"abcd", "efgh", "ijkl", "mnop", "1234", "5678", "90-=", "\x01\x02\x03\x04" };
+    int data_lens[] = {4, 4, 4, 4, 4, 4, 4, 4 };
+
+    {
+        sbdf_object *o;
+        sbdf_valuearray *va;
+
+        sbdf_obj_create_arr(sbdf_vt_binary(), 8, data, data_lens, &o);
+        SBDF_CHECK(sbdf_va_create_rle(o, &va), SBDF_OK);
+        sbdf_va_destroy(va);
+        sbdf_obj_destroy(o);
+    }
 }
 
 SBDF_TEST(valuearray, bit)

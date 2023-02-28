@@ -197,11 +197,10 @@ int sbdf_va_create_rle(sbdf_object const* array, sbdf_valuearray** handle)
 						return SBDF_ERROR_OUT_OF_MEMORY;
 					}
 					*(void**)out = copy;
-					memcpy(copy, prev_data, cur_sz);
 				}
 				else
 				{
-					memcpy(out, prev_data, cur_sz);
+					memcpy(out, prev_data, prev_sz);
 				}
 				++out_size;
 				out += elem_size;
