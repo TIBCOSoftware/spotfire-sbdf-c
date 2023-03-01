@@ -112,6 +112,11 @@ int sbdf_md_add(char const* name, sbdf_object const* value, sbdf_object const* d
 		return SBDF_ERROR_VALUETYPES_MUST_BE_EQUAL;
 	}
 
+    if (value->count != 1 || (default_value && default_value->count != 1))
+    {
+        return SBDF_ERROR_ARRAY_LENGTH_MUST_BE_1;
+    }
+
 	item = out->first;
 	prev = 0;
 

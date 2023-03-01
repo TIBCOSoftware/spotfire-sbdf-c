@@ -157,6 +157,11 @@ int sbdf_read_metadata_values(FILE* in, sbdf_valuetype vt, sbdf_metadata* out)
 
 	if (v)
 	{
+        if (v != 1)
+        {
+            return SBDF_ERROR_ARRAY_LENGTH_MUST_BE_1;
+        }
+
 		if (error = sbdf_obj_read(in, vt, &value))
 		{
 			return error;
@@ -171,6 +176,11 @@ int sbdf_read_metadata_values(FILE* in, sbdf_valuetype vt, sbdf_metadata* out)
 
 	if (v)
 	{
+        if (v != 1)
+        {
+            return SBDF_ERROR_ARRAY_LENGTH_MUST_BE_1;
+        }
+
 		if (error = sbdf_obj_read(in, vt, &default_value))
 		{
 			sbdf_obj_destroy(value);

@@ -11,16 +11,23 @@
 
 using namespace sbdf;
 
+double two_dblarr[] = { 1.0, 2.0 };
+
 SBDF_TEST(metadata, add)
 {
 	sbdf_metadata_head* t = 0;
 	obj pi = 3.14;
+    obj almost_pi = 3;
+    obj two = two_dblarr;
 
 	SBDF_CHECK(sbdf_md_create(&t), SBDF_OK);
 	SBDF_CHECK(sbdf_md_add("hello", pi, 0, t), SBDF_OK);
 	SBDF_ASSERT(!!t);
 	SBDF_CHECK(sbdf_md_add("hello", pi, 0, t), SBDF_ERROR_METADATA_ALREADY_EXISTS);
 	SBDF_CHECK(sbdf_md_add("goodbye", pi, 0, t), SBDF_OK);
+    SBDF_CHECK(sbdf_md_add("almost", pi, almost_pi, t), SBDF_ERROR_VALUETYPES_MUST_BE_EQUAL);
+    SBDF_CHECK(sbdf_md_add("two", two, 0, t), SBDF_ERROR_ARRAY_LENGTH_MUST_BE_1);
+    SBDF_CHECK(sbdf_md_add("two", pi, two, t), SBDF_ERROR_ARRAY_LENGTH_MUST_BE_1);
 	sbdf_md_destroy(t);
 }
 
