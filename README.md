@@ -1,4 +1,4 @@
-# C Library for TIBCO Spotfire® Binary Data Format (SBDF)
+# C Library for Spotfire® Binary Data Format (SBDF)
 
 This library provides a C-language interface to read and write files in the
 Spotfire Binary Data Format (SBDF).
